@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Cairo', sans-serif;
+    text-align:center;
+    background: linear-gradient(135deg,#ff6ec4,#7873f5,#42e695);
+    overflow-x:hidden;
+    color:#fff;
+}
+
+/* صفحة كلمة السر */
+#loginPage{ margin-top:120px; }
+
+input{
+    padding:12px;
+    border-radius:30px;
+    border:none;
+    width:260px;
+    font-size:16px;
+    outline:none;
+    text-align:center;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff2e63;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{
+    background:#ff0054;
+    transform:scale(1.05);
+}
+
+#giftPage, #cakePage{ display:none; margin-top:50px; }
+
+.gift{
+    font-size:110px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.gift:hover{ transform:scale(1.2) rotate(5deg); }
+
+/* ===== الكيكة ===== */
+.cake{
+    position:relative;
+    width:300px;
+    height:240px;
+    margin:60px auto;
+    z-index:5;
+}
+
+/* الطبقات */
+.layer1{
+    width:300px;
+    height:90px;
+    background:linear-gradient(to right,#ff4d6d,#ff758f);
+    border-radius:20px;
+    position:absolute;
+    bottom:0;
+    box-shadow:0 8px #c9184a;
+}
+
+.layer2{
+    width:230px;
+    height:70px;
+    background:linear-gradient(to right,#ff8fab,#ffc2d1);
+    border-radius:20px;
+    position:absolute;
+    bottom:90px;
+    left:35px;
+    box-shadow:0 6px #ff4d6d;
+}
+
+.layer3{
+    width:160px;
+    height:60px;
+    background:linear-gradient(to right,#ffd6ff,#e7c6ff);
+    border-radius:20px;
+    position:absolute;
+    bottom:160px;
+    left:70px;
+    box-shadow:0 5px #c77dff;
+}
+
+.icing{
+    position:absolute;
+    width:160px;
+    height:20px;
+    background:white;
+    border-radius:50%;
+    bottom:200px;
+    left:70px;
+}
+
+/* الشمع */
+.candle{
+    position:absolute;
+    width:14px;
+    height:45px;
+    background: repeating-linear-gradient(
+        45deg,
+        white,
+        white 5px,
+        #ff2e63 5px,
+        #ff2e63 10px
+    );
+    border-radius:5px;
+}
+
+.c1{ bottom:220px; left:100px; }
+.c2{ bottom:220px; left:140px; }
+.c3{ bottom:220px; left:180px; }
+
+.flame{
+    width:14px;
+    height:20px;
+    background: radial-gradient(circle,yellow 40%,orange 70%);
+    border-radius:50%;
+    position:absolute;
+    top:-20px;
+    animation:flicker 0.4s infinite alternate;
+}
+
+@keyframes flicker{
+    from{ transform:scale(1); opacity:0.8;}
+    to{ transform:scale(1.25); opacity:1;}
+}
+
+/* زينة */
+.decorations{
+    font-size:28px;
+    margin-top:20px;
+    animation:float 2s infinite alternate;
+}
+
+@keyframes float{
+    from{transform:translateY(0);}
+    to{transform:translateY(-12px);}
+}
+
+/* ===== القصاصات الكثيفة ===== */
+.confetti{
+    position:fixed;
+    top:-20px;
+    animation:fall linear infinite;
+    opacity:0.9;
+    z-index:1;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-100px) rotate(0deg);}
+    100%{transform:translateY(110vh) rotate(720deg);}
+}
+
+/* سكشن الكلام */
+.message-section{
+    background:white;
+    color:#333;
+    margin:60px auto;
+    width:80%;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 0 25px rgba(0,0,0,0.3);
+}
+
+.message-section h3{ color:#ff2e63; }
+
+</style>
+</head>
+
+<body>
+
+<div id="loginPage">
+    <h2>مرحباً قزعتي 💖<br>برجاء إدخال كلمة السر</h2>
+    <input type="password" id="password" placeholder="كلمة السر">
+    <br><br>
+    <button onclick="checkPassword()">دخول</button>
+</div>
+
+<div id="giftPage">
+    <h2>اضغط على الهدية 🎁</h2>
+    <div class="gift" onclick="showCake()">🎁</div>
+</div>
+
+<div id="cakePage">
+    <div class="decorations">🎉 🎊 🎈 🎀 🎉 🎊</div>
+    <h1>اجمل واغلى إنسانة كملت 20 سنة 🥰🤍🤍🤍🤍🤍🤍</h1>
+
+    <div class="cake">
+        <div class="layer1"></div>
+        <div class="layer2"></div>
+        <div class="layer3"></div>
+        <div class="icing"></div>
+
+        <div class="candle c1"><div class="flame"></div></div>
+        <div class="candle c2"><div class="flame"></div></div>
+        <div class="candle c3"><div class="flame"></div></div>
+    </div>
+
+    <div class="message-section">
+        <h3>كلمات خاصة 💌</h3>
+        <p>
+       كل سنة وأنتِ طيبة يا قزعتي تالت عيد ميلاد وانا معاكي احلى 3 سنين قضيتهم في حياتي ربنا يوفقك دايماً واشوفك مبسوطه وفرحانة ربنا يديمك ليا رفيق وشريك وصديق واغلى حد عندي في دنيتي كل سنة وأنتِ طيبة كل سنة وأنا لازق فيكي كده مش بمزاجك غصب عنك عشان أنتِ اكتر وحده فاهماني وموجودة جمبي دايماً وبتشجعيني في كل خطوة بعملها حتى لو كانت صغيرة ودايماً مبسوطة بأي حاجة بعملها ربنا يديمك يا قمري وميحرمنيش منك يا دنيتي دايماً 🤍🤍🤍🤍
+عندي كلام كتير أقوله بس معرفش وقت الكتابة كل حاجة بتتنسي (عامةً مضى مع الله و عامةً جديد مع الله🥰🥰 )
+اتمنالك الرضا والثبات على الطاعة ويصلح حالك دايماً واشوفك أسعد انسانة في الدنيا 🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍 ✨🎂  
+        💖  
+        </p>
+    </div>
+</div>
+
+<script>
+function checkPassword(){
+    const pass=document.getElementById("password").value;
+    if(pass==="to my fav person"){
+        loginPage.style.display="none";
+        giftPage.style.display="block";
+    }else{
+        alert("كلمة السر غير صحيحة ركزي يا قزعتي 🤨🫵 ");
+    }
+}
+
+function showCake(){
+    giftPage.style.display="none";
+    cakePage.style.display="block";
+}
+
+/* قصاصات كثيفة جدًا على الجنبين فقط */
+for(let i=0;i<350;i++){
+
+    let conf=document.createElement("div");
+    conf.classList.add("confetti");
+
+    let sideWidth=window.innerWidth*0.28; // عرض الجنبين
+    if(Math.random()<0.5){
+        conf.style.left=Math.random()*sideWidth+"px";
+    }else{
+        conf.style.left=(window.innerWidth - Math.random()*sideWidth)+"px";
+    }
+
+    let size=5+Math.random()*10;
+    conf.style.width=size+"px";
+    conf.style.height=size*2+"px";
+
+    conf.style.backgroundColor="hsl("+Math.random()*360+",100%,50%)";
+
+    conf.style.animationDuration=(2+Math.random()*3)+"s";
+    conf.style.animationDelay=Math.random()*5+"s";
+
+    document.body.appendChild(conf);
+}
+</script>
+
+</body>
+</html>
